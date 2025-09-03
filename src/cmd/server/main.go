@@ -37,7 +37,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/ticker", tickerHandler.GetTickerHandler).Methods("GET")
+	r.HandleFunc("/api/v1/ticker", tickerHandler.GetTickerHandler).Methods("GET")
 	r.HandleFunc("/ws/tickers", wsTickerHandler.WsTickers)
 
 	log.Println("Server running on :8080")
