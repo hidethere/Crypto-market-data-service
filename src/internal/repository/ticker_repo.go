@@ -11,14 +11,18 @@ import (
 	"github.com/hidethere/market-data-service/internal/model"
 )
 
-type Repo interface {
+type TickerRepo interface {
 	GetTicker(symbols []string) ([]model.TickerResponse, error)
 }
 
-type TickerRepo struct {
+type tickerRepo struct {
 }
 
-func (t *TickerRepo) GetTicker(symbols []string) ([]model.TickerResponse, error) {
+func NewTickerRepo() TickerRepo {
+	return &tickerRepo{}
+}
+
+func (t *tickerRepo) GetTicker(symbols []string) ([]model.TickerResponse, error) {
 	var tickerResp []model.TickerResponse
 
 	for _, s := range symbols {

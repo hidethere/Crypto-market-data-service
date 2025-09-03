@@ -15,16 +15,3 @@ type TickerResponse struct {
 	OpenTime  json.Number `json:"openTime"`
 	CloseTime json.Number `json:"closeTime"`
 }
-
-type Ticker struct {
-	Symbol    string
-	Bid       float64
-	Ask       float64
-	Last      float64
-	High      float64
-	Volume    float64
-	Low       float64
-	Spread    float64
-	OpenTime  float64
-	CloseTime float64
-}

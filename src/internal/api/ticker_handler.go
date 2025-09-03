@@ -8,15 +8,19 @@ import (
 	"github.com/hidethere/market-data-service/internal/application"
 )
 
-type TickerHandler struct {
-	UserCase *application.GetTickerUseCase
+type tickerHandler struct {
+	getTickerUseCase application.GetTickerUseCase
 }
 
-func (h *TickerHandler) GetTickerHandler(w http.ResponseWriter, r *http.Request) {
+func NewTickerHandler(getUserUC application.GetTickerUseCase) *tickerHandler {
+	return &tickerHandler{getTickerUseCase: getUserUC}
+}
+
+func (h *tickerHandler) GetTickerHandler(w http.ResponseWriter, r *http.Request) {
 	symbolsParam := r.URL.Query().Get("symbol")
 	symbols := strings.Split(symbolsParam, ",")
 
-	resp, err := h.UserCase.GetTicker(symbols)
+	resp, err := h.getTickerUseCase.GetTicker(symbols)
 	if err != nil {
 		response.Error(w, err)
 	} else {

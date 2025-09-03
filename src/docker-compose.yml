@@ -1,0 +1,10 @@
+
+services:
+  market-data:
+    build: 
+      context: .
+      dockerfile: app.dockerfile
+    container_name: crypto-market-data
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

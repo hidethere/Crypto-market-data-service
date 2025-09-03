@@ -5,16 +5,20 @@ import (
 	service "github.com/hidethere/market-data-service/internal/service"
 )
 
-type UseCase interface {
+type GetTickerUseCase interface {
 	GetTicker(symbols []string) ([]model.TickerResponse, error)
 }
 
-type GetTickerUseCase struct {
-	Service *service.TickerService
+type getTickerUseCase struct {
+	service service.TickerService
 }
 
-func (u *GetTickerUseCase) GetTicker(symbols []string) ([]model.TickerResponse, error) {
-	resp, err := u.Service.GetTicker(symbols)
+func NewGetTickerUseCase(s service.TickerService) GetTickerUseCase {
+	return &getTickerUseCase{service: s}
+}
+
+func (u *getTickerUseCase) GetTicker(symbols []string) ([]model.TickerResponse, error) {
+	resp, err := u.service.GetTicker(symbols)
 	if err != nil {
 		return nil, err
 	}

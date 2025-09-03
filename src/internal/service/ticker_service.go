@@ -5,16 +5,20 @@ import (
 	repo "github.com/hidethere/market-data-service/internal/repository"
 )
 
-type Service interface {
+type TickerService interface {
 	GetTicker(symbols []string) ([]model.TickerResponse, error)
 }
 
-type TickerService struct {
-	Repository *repo.TickerRepo
+type tickerService struct {
+	repository repo.TickerRepo
 }
 
-func (t *TickerService) GetTicker(symbols []string) ([]model.TickerResponse, error) {
-	resp, err := t.Repository.GetTicker(symbols)
+func NewTickerService(r repo.TickerRepo) TickerService {
+	return &tickerService{repository: r}
+}
+
+func (t *tickerService) GetTicker(symbols []string) ([]model.TickerResponse, error) {
+	resp, err := t.repository.GetTicker(symbols)
 	if err != nil {
 		return nil, err
 	}
