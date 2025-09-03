@@ -11,7 +11,7 @@ The service evolved from a simple **REST API** into a **WebSocket-based streamin
 - 🛡️ Maintain robust connections with **ping/pong heartbeat** and **automatic reconnection**.  
 
 Clients can interact with the service using either:  
-- **REST API** endpoints (`/ticker?symbol=...`) for on-demand queries.  
+- **REST API** endpoints (`/api/v1/ticker?symbol=...`) for on-demand queries.  
 - **WebSockets** (`/ws/tickers`) for real-time streaming.  
 
 ---
@@ -21,8 +21,8 @@ Clients can interact with the service using either:
 ### 🔹 REST API – Get Latest Ticker(s)  
 **Request:**  
 ```http
-GET /ticker?symbol=BTCUSDT
-GET /ticker?symbol=BTCUSDT,ETHUSDT
+GET /api/v1/ticker?symbol=BTCUSDT
+GET /api/v1/ticker?symbol=BTCUSDT,ETHUSDT
 ````
 **Response (single symbol):**
 ```http
